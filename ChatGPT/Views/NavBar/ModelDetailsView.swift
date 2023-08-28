@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ModelDetailsView: View {
-    @Binding var selectedModel: GPTModel
+    var model: GPTModel
     
     var body: some View {
         ZStack {
@@ -21,23 +21,21 @@ struct ModelDetailsView: View {
                 )
             HStack {
                 VStack(alignment: .leading) {
-                    Text(selectedModel.detailText)
+                    Text(model.detailText)
                         .padding(.bottom, 0.5)
                         .fontWeight(.medium)
-                    Text(selectedModel.detailSubText)
+                    Text(model.detailSubText)
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 10)
                 Spacer()
             }
-            
         }
         .frame(height: 90)
-        
     }
 }
 
 #Preview {
-    ModelDetailsView(selectedModel: .constant(GPTModel.gpt3_5))
+    ModelDetailsView(model: GPTModel.gpt3_5)
 }

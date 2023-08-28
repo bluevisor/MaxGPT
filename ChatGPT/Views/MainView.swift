@@ -9,55 +9,35 @@ import SwiftUI
 
 struct MainView: View {
     @State var prompt: String = ""
-    @State var selectedModel: GPTModel = GPTModel.gpt3_5
-    @State var modelDetailsEngaged: Bool = false
     @State var conversationStarted: Bool = false
+    @State var modelDetailsEngaged: Bool = false
+    @State var selectedModel: GPTModel = GPTModel.gpt3_5
     
     var body: some View {
         ZStack {
             VStack {
-                ScrollView {
-                    if conversationStarted {
-                        VStack {
-                            ForEach(1..<5) { _ in
-                                RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
-                                    .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                                    .foregroundColor(Color("SecondaryBackgroundColor"))
-                                    .padding(.horizontal)
-                                    .padding(.top)
-                            }
-                        }
-                    }
-                }
-                if !conversationStarted {
+                if conversationStarted {
+                    ChatView()
+                } else {
+                    Spacer()
                     ExamplesView()
-                        .padding(.vertical, 3)
+                        .padding(.bottom, 3)
                         .opacity(modelDetailsEngaged ? 0.3 : 1)
                         .disabled(modelDetailsEngaged)
+                        .animation(.easeOut(duration: 0.1), value: modelDetailsEngaged)
                 }
                 InputView(prompt: $prompt, conversationStarted: $conversationStarted)
-                    .padding(.horizontal)
-                    .padding(.bottom, 7)
+                    .animation(.easeInOut, value: prompt)
             }
             VStack {
-                HStack {
-                    if !conversationStarted {
-                            NavBarView(selectedModel: $selectedModel, modelDetailsEngaged: $modelDetailsEngaged)
-                                .padding(.leading)
-                            
-                    } else {
-                        Spacer()
-                    }
-                    Menu(modelDetailsEngaged: $modelDetailsEngaged)
-                        .padding(.trailing)
-                }
-                if modelDetailsEngaged && !conversationStarted {
-                    ModelDetailsView(selectedModel: $selectedModel)
-                        .padding(.horizontal)
-                }
+                NavbarView(conversationStarted: $conversationStarted, modelDetailsEngaged: $modelDetailsEngaged, selectedModel: $selectedModel)
                 Spacer()
             }
+        
         }
+        .padding(.horizontal)
+        .padding(.bottom, 7)
+        
     }
 }
 

@@ -29,5 +29,5 @@ struct ExampleCardView: View {
 }
 
 #Preview {
-    ExampleCardView(example: GPTModel.promptExamples[0])
+    ExampleCardView(example: PromptExample.examples[0])
 }
