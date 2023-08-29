@@ -18,6 +18,7 @@ struct MainView: View {
             VStack {
                 if conversationStarted {
                     ChatView()
+                        .padding(.horizontal)
                 } else {
                     Spacer()
                     ExamplesView()
@@ -27,17 +28,16 @@ struct MainView: View {
                         .animation(.easeOut(duration: 0.1), value: modelDetailsEngaged)
                 }
                 InputView(prompt: $prompt, conversationStarted: $conversationStarted)
-                    .animation(.easeInOut, value: prompt)
+                    .padding(.bottom, 7)
+                    .padding(.horizontal)
             }
             VStack {
                 NavbarView(conversationStarted: $conversationStarted, modelDetailsEngaged: $modelDetailsEngaged, selectedModel: $selectedModel)
+                    .padding(.horizontal)
                 Spacer()
             }
         
         }
-        .padding(.horizontal)
-        .padding(.bottom, 7)
-        
     }
 }
 

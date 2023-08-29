@@ -13,7 +13,7 @@ struct ExamplesView: View {
             HStack {
                 ForEach(PromptExample.examples.indices, id: \.self) { index in
                     ExampleCardView(example: PromptExample.examples[index])
-                        .padding(.leading, index == 0 ? 0 : 4)
+                        .padding(.leading, index == 0 ? 15 : 4)
                 }
             }
         }
