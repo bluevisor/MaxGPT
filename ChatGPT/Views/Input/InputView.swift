@@ -16,11 +16,11 @@ struct InputView: View {
             ZStack {
                 TextField("Message", text: $prompt, axis: .vertical)
                     .frame(minHeight: 25)
-                    .padding(6)
-                    .padding(.leading, 10)
+                    .padding(5)
+                    .padding(.leading, 12)
                     .background(
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .strokeBorder(.gray,lineWidth: 1)
+                            .strokeBorder(.gray,lineWidth: 0.8)
                             .background(.clear)
                             .opacity(0.5)
                     )
@@ -50,7 +50,7 @@ struct InputView: View {
                 SendIconView(prompt: $prompt)
             }
             .disabled(prompt.isEmpty)
-            .padding(.bottom, 5)
+            .padding(.bottom, 4)
         }
     }
 }

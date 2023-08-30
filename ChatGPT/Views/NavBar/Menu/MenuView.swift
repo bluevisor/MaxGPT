@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MenuView: View {
+    @Binding var conversationStarted: Bool
+    
     var menuItems: [MenuItem] = [
     MenuItem(label: "New Chat", iconName: "plus"),
     MenuItem(label: "History", iconName: "clock"),
@@ -15,21 +17,21 @@ struct MenuView: View {
     ]
     
     var body: some View {
-        List(menuItems) { item in
-            HStack {
-                Text(item.label)
-                    .fontWeight(.medium)
-                Spacer()
-                Image(systemName: item.iconName)
+        Menu {
+            ForEach(menuItems) { menuItem in
+                Button {
+                    conversationStarted = false
+                } label: {
+                    MenuItemView(menuItem: menuItem)
+                }
             }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 7)
+        } label: {
+            MenuIconView()
         }
-        .frame(width: 300)
         
     }
 }
 
 #Preview {
-    MenuView()
+    MenuView(conversationStarted: .constant(true))
 }

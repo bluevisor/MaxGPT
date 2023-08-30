@@ -28,6 +28,7 @@ struct ModelButtonView: View {
                     .font(.footnote)
                     .fontWeight(.semibold)
                     .foregroundColor(isSelected ? .primary : .gray)
+                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                 Image(systemName: "chevron.\(modelDetailsEngaged ? "up" : "down")")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -35,6 +36,7 @@ struct ModelButtonView: View {
                     .opacity(isSelected ? 1 : 0)
                     .foregroundColor(.gray)
             }
+            .padding(.horizontal)
         }
         .contentShape(RoundedRectangle(cornerRadius: 10.0))
     }

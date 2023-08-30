@@ -11,50 +11,58 @@ struct NavbarView: View {
     @Binding var conversationStarted: Bool
     @Binding var modelDetailsEngaged: Bool
     @Binding var selectedModel: GPTModel
+    @Binding var orientation: Orientation
+    @Binding var keyboardIsVisible: Bool
     
     private let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .top) {
-                if !conversationStarted {
-                    VStack {
-                        HStack {
-                            VStack {
-                                ModelSelectorView(modelDetailsEngaged: $modelDetailsEngaged, selectedModel: $selectedModel)
-                                    .frame(maxWidth: 450)
-                                if modelDetailsEngaged && geometry.size.width > 500 {
-                                    ModelDetailsView(model: selectedModel)
-                                        .frame(maxWidth: 450)
-                                }
-                            }
-                            if geometry.size.width < 500 {
-                                RoundedRectangle(cornerRadius: 15.0)
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(.clear)
+        ZStack(alignment: .top) {
+            if !conversationStarted {
+                VStack(spacing: 5) {
+                    HStack {
+                        VStack(spacing: 5) {
+                            ModelSelectorView(modelDetailsEngaged: $modelDetailsEngaged, selectedModel: $selectedModel)
+                                .padding(.top, orientation == .landscape ? 10 : 0)
+                            
+                            if modelDetailsEngaged && orientation == .landscape {
+                                ModelDetailsView(model: selectedModel)
                             }
                         }
-                        if modelDetailsEngaged && geometry.size.width < 500 {
-                            ModelDetailsView(model: selectedModel)
+                        // For placement purposes
+                        if orientation == .portrait {
+                            MenuView(conversationStarted: $conversationStarted)
+                                .foregroundColor(.clear)
+                                .opacity(0)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                         }
                     }
-                    .animation(.easeOut(duration: 0.15), value: modelDetailsEngaged)
+                    if modelDetailsEngaged && orientation == .portrait {
+                        ModelDetailsView(model: selectedModel)
+                        
+                    }
                 }
-                HStack {
-                    Spacer()
-                    MenuIconView()
-                        .onTapGesture {
-                            hapticFeedback.impactOccurred()
-                            modelDetailsEngaged = false
-                        }
-                }
+                .animation(.easeOut(duration: 0.15), value: modelDetailsEngaged)
             }
-            .padding(.top, geometry.size.width > 500 ? 10 : 0)
+            
+            HStack {
+                Spacer()
+                MenuView(conversationStarted: $conversationStarted)
+                    .onTapGesture {
+                        hapticFeedback.impactOccurred()
+                        modelDetailsEngaged = false
+                    }
+                    .padding(.top, orientation == .landscape ? 10 : 0)
+            }
         }
-        .frame(height: 50)
+        .onChange(of: keyboardIsVisible) {
+            if keyboardIsVisible {
+                modelDetailsEngaged = false
+            }
+        }
     }
 }
 
 #Preview {
-    NavbarView(conversationStarted: .constant(false), modelDetailsEngaged: .constant(true), selectedModel: .constant(GPTModel.gpt3_5))
+    NavbarView(conversationStarted: .constant(false), modelDetailsEngaged: .constant(true), selectedModel: .constant(GPTModel.gpt4), orientation: .constant(.portrait), keyboardIsVisible: .constant(false))
 }

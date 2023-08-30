@@ -16,15 +16,16 @@ struct ModelSelectorView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                RoundedRectangle(cornerRadius: 13.0)
-                    .frame(height: 50)
-                    .foregroundColor(Color("SecondaryBackgroundColor"))
+                RoundedRectangle(cornerRadius: 13)
+                    .frame(height: 52)
+                    .foregroundColor(Color(.clear))
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 13))
                 HStack {
                     if selectedModel.name == "GPT-4" {
                         Spacer()
                     }
-                    RoundedRectangle(cornerRadius: 10.0)
-                        .frame(width: (geometry.size.width/2)-4, height: 42)
+                    RoundedRectangle(cornerRadius: 9)
+                        .frame(width: (geometry.size.width/2)-4, height: 44)
                         .foregroundColor( Color(UIColor.systemBackground))
                         .padding(.horizontal, 4)
                     if selectedModel.name == "GPT-3.5" {
@@ -54,7 +55,8 @@ struct ModelSelectorView: View {
                 }
             }
         }
-        .frame(height: 50)
+        .frame(height: 55)
+        .frame(maxWidth: 450)
     }
 }
 

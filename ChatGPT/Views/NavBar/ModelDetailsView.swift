@@ -12,27 +12,27 @@ struct ModelDetailsView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 13)
-                .foregroundColor(.clear)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 13)
-                        .stroke(.gray, lineWidth: 0.5)
-                        .opacity(0.3)
-                )
-            HStack {
+            VStack {
                 VStack(alignment: .leading) {
                     Text(model.detailText)
+                        .lineLimit(nil)
                         .padding(.bottom, 0.5)
                         .fontWeight(.medium)
                     Text(model.detailSubText)
+                        .lineLimit(nil)
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 10)
-                Spacer()
+                .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                
             }
+            .frame(maxWidth: 450, alignment: .leading)
+            .background(RoundedRectangle(cornerRadius: 13)
+                .stroke(.gray, lineWidth: 0.5)
+                .opacity(0.3)
+                .background(Color(UIColor.systemBackground)))
         }
-        .frame(height: 90)
     }
 }
 

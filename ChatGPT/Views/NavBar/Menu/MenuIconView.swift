@@ -9,14 +9,13 @@ import SwiftUI
 
 struct MenuIconView: View {var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 15.0)
-                .frame(width: 50, height: 50)
-                .foregroundColor(Color("SecondaryBackgroundColor"))
             Image(systemName: "ellipsis")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 20, height: 25)
-                .opacity(0.9)
+                .frame(width: 18, height: 18)
+                .foregroundColor(.primary)
+                .padding(17)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 13))
         }
     }
 }

@@ -8,26 +8,46 @@
 import SwiftUI
 
 struct ExampleCardView: View {
+    @Binding var orientation: Orientation
     var example: PromptExample
     
     var body: some View {
-
-        VStack(alignment: .leading) {
-            Text(example.text)
-                .fontWeight(.medium)
-            Text(example.subtext)
-                .foregroundColor(.gray)
-                .font(.callout)
+        if orientation == .portrait {
+            VStack(alignment: .leading) {
+                Text(example.text)
+                    .fontWeight(.medium)
+                Text(example.subtext)
+                    .foregroundColor(.gray)
+                    .font(.callout)
+            }
+            .padding(13)
+            .background(
+                RoundedRectangle(cornerRadius: 18)
+                    .foregroundColor(Color(.clear))
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18))
+            )
+        } else {
+            ZStack {
+                RoundedRectangle(cornerRadius: 18)
+                    .foregroundColor(Color(.clear))
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18))
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(example.text)
+                            .fontWeight(.medium)
+                        Text(example.subtext)
+                            .foregroundColor(.gray)
+                            .font(.callout)
+                    }
+                    Spacer()
+                }
+                .padding(13)
+            }
+            
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 13)
-                .foregroundColor(Color("SecondaryBackgroundColor"))
-                .frame(height: 65)
-        )
     }
 }
 
 #Preview {
-    ExampleCardView(example: PromptExample.examples[0])
+    ExampleCardView(orientation: .constant(.landscape), example: PromptExample.examples[0])
 }
