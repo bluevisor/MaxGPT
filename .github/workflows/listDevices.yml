@@ -2,9 +2,9 @@ name: List Available Devices for Xcode 15
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   list-devices:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set Xcode Version
-        run: sudo xcode-select -switch /Applications/Xcode_15.0.app/Contents/Developer
+        run: sudo xcode-select -switch /Applications/Xcode_15.0.0.app/Contents/Developer
 
       - name: List Devices
         run: xcrun simctl list devices
