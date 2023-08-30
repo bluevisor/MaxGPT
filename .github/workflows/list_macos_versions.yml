@@ -1,0 +1,16 @@
+name: List Xcode Versions
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  list_xcode_versions:
+    runs-on: macos-13
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: List all installed Xcode versions
+        run: |
+          ls /Applications/ | grep Xcode
