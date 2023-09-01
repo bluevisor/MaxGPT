@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @Binding var conversationStarted: Bool
+    @Binding var settingsEngaged: Bool
     
     var menuItems: [MenuItem] = [
     MenuItem(label: "New Chat", iconName: "plus"),
@@ -20,7 +21,11 @@ struct MenuView: View {
         Menu {
             ForEach(menuItems) { menuItem in
                 Button {
-                    conversationStarted = false
+                    if menuItem.label == "Settings" {
+                        settingsEngaged.toggle()
+                    } else {
+                        conversationStarted = false
+                    }
                 } label: {
                     MenuItemView(menuItem: menuItem)
                 }
@@ -33,5 +38,5 @@ struct MenuView: View {
 }
 
 #Preview {
-    MenuView(conversationStarted: .constant(true))
+    MenuView(conversationStarted: .constant(true), settingsEngaged: .constant(false))
 }

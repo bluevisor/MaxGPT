@@ -13,6 +13,7 @@ struct NavbarView: View {
     @Binding var selectedModel: GPTModel
     @Binding var orientation: Orientation
     @Binding var keyboardIsVisible: Bool
+    @Binding var settingsEngaged: Bool
     
     private let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)
     
@@ -31,7 +32,7 @@ struct NavbarView: View {
                         }
                         // For placement purposes
                         if orientation == .portrait {
-                            MenuView(conversationStarted: $conversationStarted)
+                            MenuView(conversationStarted: $conversationStarted, settingsEngaged: $settingsEngaged)
                                 .foregroundColor(.clear)
                                 .opacity(0)
                                 .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
@@ -47,7 +48,7 @@ struct NavbarView: View {
             
             HStack {
                 Spacer()
-                MenuView(conversationStarted: $conversationStarted)
+                MenuView(conversationStarted: $conversationStarted,          settingsEngaged: $settingsEngaged)
                     .onTapGesture {
                         hapticFeedback.impactOccurred()
                         modelDetailsEngaged = false
@@ -64,5 +65,10 @@ struct NavbarView: View {
 }
 
 #Preview {
-    NavbarView(conversationStarted: .constant(false), modelDetailsEngaged: .constant(true), selectedModel: .constant(GPTModel.gpt4), orientation: .constant(.portrait), keyboardIsVisible: .constant(false))
+    NavbarView(conversationStarted: .constant(false),
+               modelDetailsEngaged: .constant(true),
+               selectedModel: .constant(GPTModel.gpt4),
+               orientation: .constant(.portrait),
+               keyboardIsVisible: .constant(false),
+               settingsEngaged: .constant(false))
 }

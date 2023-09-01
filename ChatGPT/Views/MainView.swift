@@ -17,6 +17,7 @@ struct MainView: View {
     @State var selectedModel: GPTModel = GPTModel.gpt3_5
     @State var orientation: Orientation = .portrait
     @State var keyboardIsVisible: Bool = false
+    @State var settingsEngaged: Bool = false
     
     var body: some View {
         ZStack {
@@ -42,10 +43,11 @@ struct MainView: View {
                 InputView(prompt: $prompt, conversationStarted: $conversationStarted)
                     .padding(.bottom, 8)
                     .padding(.horizontal)
+                    .animation(.easeInOut(duration: 0.1), value: orientation)
             }
             
             VStack {
-                NavbarView(conversationStarted: $conversationStarted, modelDetailsEngaged: $modelDetailsSelected, selectedModel: $selectedModel, orientation: $orientation, keyboardIsVisible: $keyboardIsVisible)
+                NavbarView(conversationStarted: $conversationStarted, modelDetailsEngaged: $modelDetailsSelected, selectedModel: $selectedModel, orientation: $orientation, keyboardIsVisible: $keyboardIsVisible, settingsEngaged: $settingsEngaged)
                     .padding(.horizontal)
                 Spacer()
             }
@@ -64,6 +66,9 @@ struct MainView: View {
         .onChange(of: horizontalSizeClass) {
             orientation = Orientation(horizontalSizeClass:  horizontalSizeClass, verticalSizeClass: verticalSizeClass)
         }
+        .sheet(isPresented: $settingsEngaged, content: {
+            SettingsView()
+        })
     }
 }
 

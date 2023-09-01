@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271A09E32AA1741600C0870D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09E22AA1741600C0870D /* SettingsView.swift */; };
+		271A09E72AA1759400C0870D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09E62AA1759400C0870D /* Setting.swift */; };
 		2764E7DD2A9960F400A0A903 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7DC2A9960F400A0A903 /* AppEntry.swift */; };
 		2764E7DF2A9960F400A0A903 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7DE2A9960F400A0A903 /* MainView.swift */; };
 		2764E7E12A9960F700A0A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2764E7E02A9960F700A0A903 /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		271A09E22AA1741600C0870D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		271A09E62AA1759400C0870D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		2764E7D92A9960F400A0A903 /* ChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2764E7DC2A9960F400A0A903 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		2764E7DE2A9960F400A0A903 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -64,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		271A09E12AA173E400C0870D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				271A09E22AA1741600C0870D /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		2764E7D02A9960F400A0A903 = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +115,13 @@
 		2764E7EA2A99798500A0A903 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2764E8062A9BF70F00A0A903 /* Utilities */,
+				271A09E12AA173E400C0870D /* Settings */,
 				2764E7FF2A9A7DDA00A0A903 /* Examples */,
 				2764E7F72A9A46FC00A0A903 /* Input */,
 				2764E7F62A99DA3200A0A903 /* NavBar */,
 				2764E7DE2A9960F400A0A903 /* MainView.swift */,
 				2764E8022A9AD09500A0A903 /* ChatView.swift */,
+				2764E8062A9BF70F00A0A903 /* Utilities */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -120,6 +133,7 @@
 				2764E80B2A9C19B600A0A903 /* PromptExample.swift */,
 				2764E8142A9D51A400A0A903 /* MenuItem.swift */,
 				2764E8182A9F20E500A0A903 /* Orientation.swift */,
+				271A09E62AA1759400C0870D /* Setting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +266,7 @@
 				2764E7F52A99D0DF00A0A903 /* ModelDetailsView.swift in Sources */,
 				2764E7EC2A9979C100A0A903 /* ModelSelectorView.swift in Sources */,
 				2764E80A2A9C136400A0A903 /* ModelButtonView.swift in Sources */,
+				271A09E72AA1759400C0870D /* Setting.swift in Sources */,
 				2764E8122A9D515C00A0A903 /* MenuView.swift in Sources */,
 				2764E8052A9BEB3800A0A903 /* NavbarView.swift in Sources */,
 				2764E7F02A9985E800A0A903 /* InputView.swift in Sources */,
@@ -259,6 +274,7 @@
 				2764E7F32A99A2DF00A0A903 /* GPTModel.swift in Sources */,
 				2764E8192A9F20E500A0A903 /* Orientation.swift in Sources */,
 				2764E7DD2A9960F400A0A903 /* AppEntry.swift in Sources */,
+				271A09E32AA1741600C0870D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
