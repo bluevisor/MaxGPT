@@ -10,44 +10,46 @@ import SwiftUI
 struct MainView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
-        
-    @State var prompt: String = ""
-    @State var conversationStarted: Bool = false
+
     @State var modelDetailsSelected: Bool = false
     @State var selectedModel: GPTModel = GPTModel.gpt3_5
     @State var orientation: Orientation = .portrait
     @State var keyboardIsVisible: Bool = false
     @State var settingsEngaged: Bool = false
+    @StateObject private var chatViewModel = ChatViewModel()
     
     var body: some View {
         ZStack {
             VStack {
-                if !conversationStarted {
+                if chatViewModel.chatMessages.isEmpty {
                     Rectangle()
                         .frame(height: 52)
                         .foregroundColor(.clear)
                         .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                 }
-                ChatView(conversationStarted: $conversationStarted, keyBoardIsVisible: $keyboardIsVisible)
+                ChatView()
                     .padding(.horizontal)
+                    .environmentObject(chatViewModel)
                     .onTapGesture {
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }
-                if !conversationStarted && !(keyboardIsVisible && orientation == .landscape) {
+                if chatViewModel.chatMessages.isEmpty && !(keyboardIsVisible && orientation == .landscape) {
                     ExamplesView(orientation: $orientation)
                         .padding(.bottom, 8)
                         .opacity(modelDetailsSelected ? 0.3 : 1)
                         .disabled(modelDetailsSelected)
                         .animation(.easeOut(duration: 0.1), value: modelDetailsSelected)
                 }
-                InputView(prompt: $prompt, conversationStarted: $conversationStarted)
+                InputView()
                     .padding(.bottom, 8)
                     .padding(.horizontal)
                     .animation(.easeInOut(duration: 0.1), value: orientation)
+                    .environmentObject(chatViewModel)
             }
             
             VStack {
-                NavbarView(conversationStarted: $conversationStarted, modelDetailsEngaged: $modelDetailsSelected, selectedModel: $selectedModel, orientation: $orientation, keyboardIsVisible: $keyboardIsVisible, settingsEngaged: $settingsEngaged)
+                NavbarView(modelDetailsEngaged: $modelDetailsSelected, selectedModel: $selectedModel, orientation: $orientation, keyboardIsVisible: $keyboardIsVisible, settingsEngaged: $settingsEngaged)
+                    .environmentObject(chatViewModel)
                     .padding(.horizontal)
                 Spacer()
             }
