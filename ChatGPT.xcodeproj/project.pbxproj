@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		271A09E32AA1741600C0870D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09E22AA1741600C0870D /* SettingsView.swift */; };
 		271A09E72AA1759400C0870D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09E62AA1759400C0870D /* Setting.swift */; };
+		271A09EE2AA209C600C0870D /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 271A09ED2AA209C600C0870D /* OpenAIKit */; };
+		271A09F22AA2341E00C0870D /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09F12AA2341E00C0870D /* ChatViewModel.swift */; };
 		2764E7DD2A9960F400A0A903 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7DC2A9960F400A0A903 /* AppEntry.swift */; };
 		2764E7DF2A9960F400A0A903 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7DE2A9960F400A0A903 /* MainView.swift */; };
 		2764E7E12A9960F700A0A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2764E7E02A9960F700A0A903 /* Assets.xcassets */; };
@@ -29,11 +31,15 @@
 		2764E8152A9D51A400A0A903 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E8142A9D51A400A0A903 /* MenuItem.swift */; };
 		2764E8172A9D521E00A0A903 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E8162A9D521E00A0A903 /* MenuItemView.swift */; };
 		2764E8192A9F20E500A0A903 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E8182A9F20E500A0A903 /* Orientation.swift */; };
+		27C687462AA2AD62005D0246 /* ChatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C687452AA2AD62005D0246 /* ChatCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		271A09E22AA1741600C0870D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		271A09E62AA1759400C0870D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		271A09EA2AA1F6E800C0870D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		271A09EB2AA1F74D00C0870D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		271A09F12AA2341E00C0870D /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		2764E7D92A9960F400A0A903 /* ChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2764E7DC2A9960F400A0A903 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		2764E7DE2A9960F400A0A903 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -55,6 +61,7 @@
 		2764E8142A9D51A400A0A903 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		2764E8162A9D521E00A0A903 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		2764E8182A9F20E500A0A903 /* Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
+		27C687452AA2AD62005D0246 /* ChatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				271A09EE2AA209C600C0870D /* OpenAIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +103,8 @@
 		2764E7DB2A9960F400A0A903 /* ChatGPT */ = {
 			isa = PBXGroup;
 			children = (
+				271A09EA2AA1F6E800C0870D /* Config.xcconfig */,
+				271A09EB2AA1F74D00C0870D /* Info.plist */,
 				2764E7DC2A9960F400A0A903 /* AppEntry.swift */,
 				2764E7F12A99A2BE00A0A903 /* Models */,
 				2764E7EA2A99798500A0A903 /* Views */,
@@ -115,12 +125,12 @@
 		2764E7EA2A99798500A0A903 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2772AE402AA2ACC200CA845F /* Chat */,
 				271A09E12AA173E400C0870D /* Settings */,
 				2764E7FF2A9A7DDA00A0A903 /* Examples */,
 				2764E7F72A9A46FC00A0A903 /* Input */,
 				2764E7F62A99DA3200A0A903 /* NavBar */,
 				2764E7DE2A9960F400A0A903 /* MainView.swift */,
-				2764E8022A9AD09500A0A903 /* ChatView.swift */,
 				2764E8062A9BF70F00A0A903 /* Utilities */,
 			);
 			path = Views;
@@ -134,6 +144,7 @@
 				2764E8142A9D51A400A0A903 /* MenuItem.swift */,
 				2764E8182A9F20E500A0A903 /* Orientation.swift */,
 				271A09E62AA1759400C0870D /* Setting.swift */,
+				271A09F12AA2341E00C0870D /* ChatViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +196,15 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
+		2772AE402AA2ACC200CA845F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				2764E8022A9AD09500A0A903 /* ChatView.swift */,
+				27C687452AA2AD62005D0246 /* ChatCardView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,6 +221,9 @@
 			dependencies = (
 			);
 			name = ChatGPT;
+			packageProductDependencies = (
+				271A09ED2AA209C600C0870D /* OpenAIKit */,
+			);
 			productName = ChatGPT;
 			productReference = 2764E7D92A9960F400A0A903 /* ChatGPT.app */;
 			productType = "com.apple.product-type.application";
@@ -229,6 +252,9 @@
 				Base,
 			);
 			mainGroup = 2764E7D02A9960F400A0A903;
+			packageReferences = (
+				271A09EC2AA209C600C0870D /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
 			productRefGroup = 2764E7DA2A9960F400A0A903 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +285,7 @@
 				2764E7FC2A9A5CAD00A0A903 /* ExampleCardView.swift in Sources */,
 				2764E7F92A9A473800A0A903 /* SendIconView.swift in Sources */,
 				2764E7DF2A9960F400A0A903 /* MainView.swift in Sources */,
+				271A09F22AA2341E00C0870D /* ChatViewModel.swift in Sources */,
 				2764E80C2A9C19B600A0A903 /* PromptExample.swift in Sources */,
 				2764E8032A9AD09500A0A903 /* ChatView.swift in Sources */,
 				2764E8012A9A841900A0A903 /* MenuIconView.swift in Sources */,
@@ -266,6 +293,7 @@
 				2764E7F52A99D0DF00A0A903 /* ModelDetailsView.swift in Sources */,
 				2764E7EC2A9979C100A0A903 /* ModelSelectorView.swift in Sources */,
 				2764E80A2A9C136400A0A903 /* ModelButtonView.swift in Sources */,
+				27C687462AA2AD62005D0246 /* ChatCardView.swift in Sources */,
 				271A09E72AA1759400C0870D /* Setting.swift in Sources */,
 				2764E8122A9D515C00A0A903 /* MenuView.swift in Sources */,
 				2764E8052A9BEB3800A0A903 /* NavbarView.swift in Sources */,
@@ -283,6 +311,7 @@
 /* Begin XCBuildConfiguration section */
 		2764E7E52A9960F700A0A903 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 271A09EA2AA1F6E800C0870D /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -346,6 +375,7 @@
 		};
 		2764E7E62A9960F700A0A903 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 271A09EA2AA1F6E800C0870D /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -411,6 +441,7 @@
 				DEVELOPMENT_TEAM = L9L8W9MRSP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChatGPT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -440,6 +471,7 @@
 				DEVELOPMENT_TEAM = L9L8W9MRSP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChatGPT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -480,6 +512,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		271A09EC2AA209C600C0870D /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FuturraGroup/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		271A09ED2AA209C600C0870D /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 271A09EC2AA209C600C0870D /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAIKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2764E7D12A9960F400A0A903 /* Project object */;
 }

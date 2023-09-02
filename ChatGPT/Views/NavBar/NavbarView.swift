@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NavbarView: View {
-    @Binding var conversationStarted: Bool
+    @EnvironmentObject var chatViewModel: ChatViewModel
     @Binding var modelDetailsEngaged: Bool
     @Binding var selectedModel: GPTModel
     @Binding var orientation: Orientation
@@ -19,7 +19,7 @@ struct NavbarView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            if !conversationStarted {
+            if chatViewModel.chatMessages.isEmpty {
                 VStack(spacing: 5) {
                     HStack {
                         VStack(spacing: 5) {
@@ -32,7 +32,8 @@ struct NavbarView: View {
                         }
                         // For placement purposes
                         if orientation == .portrait {
-                            MenuView(conversationStarted: $conversationStarted, settingsEngaged: $settingsEngaged)
+                            MenuView(settingsEngaged: $settingsEngaged)
+                                .environmentObject(chatViewModel)
                                 .foregroundColor(.clear)
                                 .opacity(0)
                                 .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
@@ -45,10 +46,10 @@ struct NavbarView: View {
                 }
                 .animation(.easeOut(duration: 0.15), value: modelDetailsEngaged)
             }
-            
             HStack {
                 Spacer()
-                MenuView(conversationStarted: $conversationStarted,          settingsEngaged: $settingsEngaged)
+                MenuView(settingsEngaged: $settingsEngaged)
+                    .environmentObject(chatViewModel)
                     .onTapGesture {
                         hapticFeedback.impactOccurred()
                         modelDetailsEngaged = false
@@ -65,10 +66,10 @@ struct NavbarView: View {
 }
 
 #Preview {
-    NavbarView(conversationStarted: .constant(false),
-               modelDetailsEngaged: .constant(true),
+    NavbarView(modelDetailsEngaged: .constant(true),
                selectedModel: .constant(GPTModel.gpt4),
                orientation: .constant(.portrait),
                keyboardIsVisible: .constant(false),
                settingsEngaged: .constant(false))
+    .environmentObject(ChatViewModel())
 }

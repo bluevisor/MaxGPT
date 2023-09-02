@@ -6,48 +6,47 @@
 //
 
 import SwiftUI
+import OpenAIKit
 
 struct InputView: View {
-    @Binding var prompt: String
-    @Binding var conversationStarted: Bool
+    @EnvironmentObject var viewModel: ChatViewModel
+    @State var prompt: String = ""
     
     var body: some View {
         HStack(alignment: .bottom) {
             ZStack {
-                TextField("Message", text: $prompt, axis: .vertical)
+                TextField("Message", text: $prompt)
                     .frame(minHeight: 25)
                     .padding(5)
                     .padding(.leading, 12)
                     .background(
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
                             .strokeBorder(.gray,lineWidth: 0.8)
-                            .background(.clear)
+                            .background(Color.clear)
                             .opacity(0.5)
                     )
                     .gesture(DragGesture().onChanged{_ in UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)})
                 if prompt.isEmpty {
                     HStack {
                         Spacer()
-                        Button {
-                            
-                        } label: {
+                        Button(action: {}) {
                             Image(systemName: "waveform")
                                 .resizable()
                                 .frame(width: 19, height: 19)
                                 .foregroundColor(.gray)
                         }
                         .padding(.trailing, 12)
-                        .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                        .opacity(0.8)
                     }
                 }
             }
             Spacer()
-            Button {
-                conversationStarted = true
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                prompt = ""
-            }label: {
-                SendIconView(prompt: $prompt)
+            Button(action: {
+                viewModel.sendMessage(prompt)
+                            prompt = ""
+            }) {
+                SendIconView()
+                    .disabled(prompt.isEmpty)
             }
             .disabled(prompt.isEmpty)
             .padding(.bottom, 4)
@@ -56,5 +55,6 @@ struct InputView: View {
 }
 
 #Preview {
-    InputView(prompt: .constant(""), conversationStarted: .constant(false))
+    InputView()
+        .environmentObject(ChatViewModel())
 }

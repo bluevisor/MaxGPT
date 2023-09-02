@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
-    @Binding var conversationStarted: Bool
+    @EnvironmentObject var chatViewModel: ChatViewModel
     @Binding var settingsEngaged: Bool
     
     var menuItems: [MenuItem] = [
@@ -24,7 +24,7 @@ struct MenuView: View {
                     if menuItem.label == "Settings" {
                         settingsEngaged.toggle()
                     } else {
-                        conversationStarted = false
+                        chatViewModel.chatMessages = []
                     }
                 } label: {
                     MenuItemView(menuItem: menuItem)
@@ -38,5 +38,6 @@ struct MenuView: View {
 }
 
 #Preview {
-    MenuView(conversationStarted: .constant(true), settingsEngaged: .constant(false))
+    MenuView(settingsEngaged: .constant(false))
+        .environmentObject(ChatViewModel())
 }
