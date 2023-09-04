@@ -37,9 +37,9 @@
 /* Begin PBXFileReference section */
 		271A09E22AA1741600C0870D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		271A09E62AA1759400C0870D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
-		271A09EA2AA1F6E800C0870D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		271A09EB2AA1F74D00C0870D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		271A09F12AA2341E00C0870D /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		275E44192AA57154004247B8 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2764E7D92A9960F400A0A903 /* ChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2764E7DC2A9960F400A0A903 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		2764E7DE2A9960F400A0A903 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -103,13 +103,13 @@
 		2764E7DB2A9960F400A0A903 /* ChatGPT */ = {
 			isa = PBXGroup;
 			children = (
-				271A09EA2AA1F6E800C0870D /* Config.xcconfig */,
 				271A09EB2AA1F74D00C0870D /* Info.plist */,
 				2764E7DC2A9960F400A0A903 /* AppEntry.swift */,
 				2764E7F12A99A2BE00A0A903 /* Models */,
 				2764E7EA2A99798500A0A903 /* Views */,
 				2764E7E02A9960F700A0A903 /* Assets.xcassets */,
 				2764E7E22A9960F700A0A903 /* Preview Content */,
+				275E44192AA57154004247B8 /* Config.xcconfig */,
 			);
 			path = ChatGPT;
 			sourceTree = "<group>";
@@ -311,7 +311,6 @@
 /* Begin XCBuildConfiguration section */
 		2764E7E52A9960F700A0A903 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 271A09EA2AA1F6E800C0870D /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -375,7 +374,6 @@
 		};
 		2764E7E62A9960F700A0A903 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 271A09EA2AA1F6E800C0870D /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
