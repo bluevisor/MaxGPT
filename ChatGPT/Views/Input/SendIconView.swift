@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct SendIconView: View {var body: some View {
-        ZStack {
-            Circle()
-                .frame(width: 28, height: 28)
-                .foregroundColor(Color(.accent))
-            Image(systemName: "arrow.up")
-                .resizable()
-                .frame(width: 12, height: 14)
-                .bold()
-                .foregroundColor(Color(.white))
-                
-        }
+        Circle()
+            .frame(width: 28, height: 28)
+            .foregroundColor(Color(.accent))
+            .overlay() {
+                Image(systemName: "arrow.up")
+                    .resizable()
+                    .bold()
+                    .frame(width: 12, height: 14)
+                    .padding(7)
+                    .foregroundColor(Color(UIColor.systemBackground))
+            }
     }
 }
 

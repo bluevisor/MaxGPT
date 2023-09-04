@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
-
+    @StateObject private var chatViewModel = ChatViewModel()
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @State var modelDetailsSelected: Bool = false
     @State var selectedModel: GPTModel = GPTModel.gpt3_5
-    @State var orientation: Orientation = .portrait
     @State var keyboardIsVisible: Bool = false
     @State var settingsEngaged: Bool = false
-    @StateObject private var chatViewModel = ChatViewModel()
+    
     
     var body: some View {
         ZStack {
@@ -28,13 +26,12 @@ struct MainView: View {
                         .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                 }
                 ChatView()
-                    .padding(.horizontal)
                     .environmentObject(chatViewModel)
                     .onTapGesture {
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }
-                if chatViewModel.chatMessages.isEmpty && !(keyboardIsVisible && orientation == .landscape) {
-                    ExamplesView(orientation: $orientation)
+                if chatViewModel.chatMessages.isEmpty && !(keyboardIsVisible && horizontalSizeClass != .compact) {
+                    ExamplesView()
                         .padding(.bottom, 8)
                         .opacity(modelDetailsSelected ? 0.3 : 1)
                         .disabled(modelDetailsSelected)
@@ -43,12 +40,12 @@ struct MainView: View {
                 InputView()
                     .padding(.bottom, 8)
                     .padding(.horizontal)
-                    .animation(.easeInOut(duration: 0.1), value: orientation)
+                    .animation(.easeInOut(duration: 0.1), value: horizontalSizeClass)
                     .environmentObject(chatViewModel)
             }
             
             VStack {
-                NavbarView(modelDetailsEngaged: $modelDetailsSelected, selectedModel: $selectedModel, orientation: $orientation, keyboardIsVisible: $keyboardIsVisible, settingsEngaged: $settingsEngaged)
+                NavbarView(modelDetailsEngaged: $modelDetailsSelected, selectedModel: $selectedModel, keyboardIsVisible: $keyboardIsVisible, settingsEngaged: $settingsEngaged)
                     .environmentObject(chatViewModel)
                     .padding(.horizontal)
                 Spacer()
@@ -56,7 +53,6 @@ struct MainView: View {
             
         }
         .onAppear {
-            orientation = Orientation(horizontalSizeClass: horizontalSizeClass, verticalSizeClass: verticalSizeClass)
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { _ in
                 keyboardIsVisible = true
             }
@@ -64,9 +60,6 @@ struct MainView: View {
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { _ in
                 keyboardIsVisible = false
             }
-        }
-        .onChange(of: horizontalSizeClass) {
-            orientation = Orientation(horizontalSizeClass:  horizontalSizeClass, verticalSizeClass: verticalSizeClass)
         }
         .sheet(isPresented: $settingsEngaged, content: {
             SettingsView()

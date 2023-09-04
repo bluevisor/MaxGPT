@@ -9,9 +9,9 @@ import SwiftUI
 
 struct NavbarView: View {
     @EnvironmentObject var chatViewModel: ChatViewModel
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Binding var modelDetailsEngaged: Bool
     @Binding var selectedModel: GPTModel
-    @Binding var orientation: Orientation
     @Binding var keyboardIsVisible: Bool
     @Binding var settingsEngaged: Bool
     
@@ -24,14 +24,14 @@ struct NavbarView: View {
                     HStack {
                         VStack(spacing: 5) {
                             ModelSelectorView(modelDetailsEngaged: $modelDetailsEngaged, selectedModel: $selectedModel)
-                                .padding(.top, orientation == .landscape ? 10 : 0)
+                                .padding(.top, horizontalSizeClass != .compact ? 10 : 0)
                             
-                            if modelDetailsEngaged && orientation == .landscape {
+                            if modelDetailsEngaged && horizontalSizeClass != .compact {
                                 ModelDetailsView(model: selectedModel)
                             }
                         }
                         // For placement purposes
-                        if orientation == .portrait {
+                        if horizontalSizeClass == .compact {
                             MenuView(settingsEngaged: $settingsEngaged)
                                 .environmentObject(chatViewModel)
                                 .foregroundColor(.clear)
@@ -39,7 +39,7 @@ struct NavbarView: View {
                                 .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                         }
                     }
-                    if modelDetailsEngaged && orientation == .portrait {
+                    if modelDetailsEngaged && horizontalSizeClass == .compact {
                         ModelDetailsView(model: selectedModel)
                         
                     }
@@ -54,7 +54,7 @@ struct NavbarView: View {
                         hapticFeedback.impactOccurred()
                         modelDetailsEngaged = false
                     }
-                    .padding(.top, orientation == .landscape ? 10 : 0)
+                    .padding(.top, horizontalSizeClass != .compact ? 10 : 0)
             }
         }
         .onChange(of: keyboardIsVisible) {
@@ -68,7 +68,6 @@ struct NavbarView: View {
 #Preview {
     NavbarView(modelDetailsEngaged: .constant(true),
                selectedModel: .constant(GPTModel.gpt4),
-               orientation: .constant(.portrait),
                keyboardIsVisible: .constant(false),
                settingsEngaged: .constant(false))
     .environmentObject(ChatViewModel())

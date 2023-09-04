@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct PromptExample {
+struct PromptExample: Identifiable {
+    let id = UUID()
     var text: String
     var subtext: String
     

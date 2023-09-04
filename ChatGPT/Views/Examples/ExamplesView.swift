@@ -8,27 +8,26 @@
 import SwiftUI
 
 struct ExamplesView: View {
-    @Binding var orientation: Orientation
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
-    let columns = [
-        GridItem(.flexible(), spacing: 15),
-        GridItem(.flexible(), spacing: 15)
-    ]
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
     
     var body: some View {
-        if orientation == .portrait {
+        if horizontalSizeClass == .compact {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(PromptExample.examples.indices, id: \.self) { index in
-                        ExampleCardView(orientation: $orientation, example: PromptExample.examples[index])
-                            .padding(.leading, index == 0 ? 15 : 4)
+                    ForEach(PromptExample.examples) { example in
+                        ExampleCardView(example: example)
+                            .padding(.leading, 4)
                     }
                 }
+                .padding(.leading, 11)
+                .padding(.trailing, 15)
             }
         } else {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(PromptExample.examples.indices, id: \.self) { index in
-                    ExampleCardView(orientation: $orientation, example: PromptExample.examples[index])
+                    ExampleCardView(example: PromptExample.examples[index])
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -40,5 +39,5 @@ struct ExamplesView: View {
 }
 
 #Preview {
-    ExamplesView(orientation: .constant(.landscape))
+    ExamplesView()
 }
