@@ -42,11 +42,14 @@ struct InputView: View {
             }
             Spacer()
             Button(action: {
-                viewModel.sendMessage(prompt)
+                viewModel.startChat(prompt)
                             prompt = ""
             }) {
+                
+                // TODO: Fix button transparency issue
                 SendIconView()
                     .disabled(prompt.isEmpty)
+                    .opacity(prompt.isEmpty ? 0.5 : 1)
             }
             .disabled(prompt.isEmpty)
             .padding(.bottom, 4)

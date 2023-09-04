@@ -10,17 +10,19 @@ import OpenAIKit
 
 struct ChatView: View {
     @EnvironmentObject var chatViewModel: ChatViewModel
-
+    
     var body: some View {
-        VStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(chatViewModel.chatMessages) { message in
-                        ChatCardView(message: message)
-                    }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                ForEach(chatViewModel.chatMessages) { message in
+                    ChatCardView(message: message)
                 }
-                .padding(.vertical)
+                if !chatViewModel.isFinished {
+                    ChatCardView(message: AIMessage(role: .assistant, content: chatViewModel.accumulatingMessage))
+                }
             }
+            .padding(.vertical)
+            .padding(.horizontal, 10)
         }
     }
 }

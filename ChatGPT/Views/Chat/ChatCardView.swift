@@ -40,20 +40,9 @@ struct ChatCardView: View {
                     Rectangle()
                         .foregroundColor(.clear)
                         .frame(width: 20, height: 20)
-                    if message.role == .user {
                         Text(message.content)
-                    }
-                    else {
-                        if !viewModel.isFinished {
-                            Text(viewModel.accumulatingMessage)
-                        } else {
-                            
-                        }
-                        
-                    }
                 }
             }
-            .padding(.leading)
             Spacer()
         }
     }

@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct ExampleCardView: View {
-    @Binding var orientation: Orientation
     var example: PromptExample
     
     var body: some View {
-        if orientation == .portrait {
+        HStack {
             VStack(alignment: .leading) {
                 Text(example.text)
                     .fontWeight(.medium)
@@ -20,34 +19,13 @@ struct ExampleCardView: View {
                     .foregroundColor(.gray)
                     .font(.callout)
             }
-            .padding(13)
-            .background(
-                RoundedRectangle(cornerRadius: 18)
-                    .foregroundColor(Color(.clear))
-                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18))
-            )
-        } else {
-            ZStack {
-                RoundedRectangle(cornerRadius: 18)
-                    .foregroundColor(Color(.clear))
-                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18))
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(example.text)
-                            .fontWeight(.medium)
-                        Text(example.subtext)
-                            .foregroundColor(.gray)
-                            .font(.callout)
-                    }
-                    Spacer()
-                }
-                .padding(13)
-            }
-            
+            Spacer()
         }
+        .padding(13)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18))
     }
 }
 
 #Preview {
-    ExampleCardView(orientation: .constant(.landscape), example: PromptExample.examples[0])
+    ExampleCardView(example: PromptExample.examples[0])
 }
