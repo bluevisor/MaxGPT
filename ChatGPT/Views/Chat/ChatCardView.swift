@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import OpenAIKit
 
 struct ChatCardView: View {
@@ -40,7 +41,10 @@ struct ChatCardView: View {
                     Rectangle()
                         .foregroundColor(.clear)
                         .frame(width: 20, height: 20)
-                        Text(message.content)
+//                    Text(MarkdownRenderer(source: message.content).render() ?? AttributedString(message.content))
+                    Text(message.content)
+                        .lineSpacing(0.5)
+                        
                 }
             }
             Spacer()

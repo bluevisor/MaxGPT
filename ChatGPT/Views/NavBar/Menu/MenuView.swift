@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject var chatViewModel: ChatViewModel
-    @Binding var settingsEngaged: Bool
+    @State var settingsEngaged: Bool = false
     
     var menuItems: [MenuItem] = [
     MenuItem(label: "New Chat", iconName: "plus"),
@@ -33,11 +33,14 @@ struct MenuView: View {
         } label: {
             MenuIconView()
         }
+        .sheet(isPresented: $settingsEngaged, content: {
+            SettingsView(settingsEngaged: $settingsEngaged)
+        })
         
     }
 }
 
 #Preview {
-    MenuView(settingsEngaged: .constant(false))
+    MenuView()
         .environmentObject(ChatViewModel())
 }

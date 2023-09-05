@@ -32,7 +32,6 @@ class ChatViewModel: ObservableObject {
             case .success(let streamResult):
                 if let chunk = streamResult.message?.choices.first?.message?.content {
                     DispatchQueue.main.async {
-                        print(chunk)
                         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         self.accumulatingMessage.append(chunk)
                     }

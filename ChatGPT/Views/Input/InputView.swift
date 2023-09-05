@@ -15,10 +15,10 @@ struct InputView: View {
     var body: some View {
         HStack(alignment: .bottom) {
             ZStack {
-                TextField("Message", text: $prompt)
+                TextField("Message", text: $prompt, axis: .vertical)
                     .frame(minHeight: 25)
                     .padding(5)
-                    .padding(.leading, 12)
+                    .padding(.horizontal, 12)
                     .background(
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
                             .strokeBorder(.gray,lineWidth: 0.8)

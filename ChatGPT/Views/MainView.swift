@@ -13,7 +13,6 @@ struct MainView: View {
     @State var modelDetailsSelected: Bool = false
     @State var selectedModel: GPTModel = GPTModel.gpt3_5
     @State var keyboardIsVisible: Bool = false
-    @State var settingsEngaged: Bool = false
     
     
     var body: some View {
@@ -43,14 +42,12 @@ struct MainView: View {
                     .animation(.easeInOut(duration: 0.1), value: horizontalSizeClass)
                     .environmentObject(chatViewModel)
             }
-            
             VStack {
-                NavbarView(modelDetailsEngaged: $modelDetailsSelected, selectedModel: $selectedModel, keyboardIsVisible: $keyboardIsVisible, settingsEngaged: $settingsEngaged)
+                NavbarView(modelDetailsEngaged: $modelDetailsSelected, selectedModel: $selectedModel, keyboardIsVisible: $keyboardIsVisible)
                     .environmentObject(chatViewModel)
                     .padding(.horizontal)
                 Spacer()
             }
-            
         }
         .onAppear {
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { _ in
@@ -61,9 +58,6 @@ struct MainView: View {
                 keyboardIsVisible = false
             }
         }
-        .sheet(isPresented: $settingsEngaged, content: {
-            SettingsView()
-        })
     }
 }
 

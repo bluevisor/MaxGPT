@@ -31,7 +31,7 @@ struct ModelDetailsView: View {
             .background(RoundedRectangle(cornerRadius: 13)
                 .stroke(.gray, lineWidth: 0.5)
                 .opacity(0.3)
-                .background(.clear))
+                .background(Color(UIColor.systemBackground)))
         }
     }
 }
