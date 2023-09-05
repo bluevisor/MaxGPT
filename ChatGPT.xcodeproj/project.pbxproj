@@ -34,6 +34,7 @@
 		27A9FBE62AA68EA900DB9C31 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A9FBE52AA68EA900DB9C31 /* MarkdownRenderer.swift */; };
 		27A9FBE92AA68F4800DB9C31 /* Markdownosaur in Frameworks */ = {isa = PBXBuildFile; productRef = 27A9FBE82AA68F4800DB9C31 /* Markdownosaur */; };
 		27A9FBEC2AA6905100DB9C31 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 27A9FBEB2AA6905100DB9C31 /* Kingfisher */; };
+		27A9FBEE2AA6C65600DB9C31 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A9FBED2AA6C65600DB9C31 /* SettingsModel.swift */; };
 		27C687462AA2AD62005D0246 /* ChatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C687452AA2AD62005D0246 /* ChatCardView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		2764E8162A9D521E00A0A903 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		2764E8182A9F20E500A0A903 /* Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
 		27A9FBE52AA68EA900DB9C31 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
+		27A9FBED2AA6C65600DB9C31 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		27C687452AA2AD62005D0246 /* ChatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,12 +111,13 @@
 		2764E7DB2A9960F400A0A903 /* ChatGPT */ = {
 			isa = PBXGroup;
 			children = (
-				27BA41922AA5A2B500419937 /* Themes */,
+				2764E7DC2A9960F400A0A903 /* AppEntry.swift */,
 				275E44192AA57154004247B8 /* Config.xcconfig */,
 				271A09EB2AA1F74D00C0870D /* Info.plist */,
-				2764E7DC2A9960F400A0A903 /* AppEntry.swift */,
 				2764E7F12A99A2BE00A0A903 /* Models */,
 				2764E7EA2A99798500A0A903 /* Views */,
+				2764E8062A9BF70F00A0A903 /* Utilities */,
+				27BA41922AA5A2B500419937 /* Themes */,
 				2764E7E02A9960F700A0A903 /* Assets.xcassets */,
 				2764E7E22A9960F700A0A903 /* Preview Content */,
 			);
@@ -138,7 +141,6 @@
 				2764E7F72A9A46FC00A0A903 /* Input */,
 				2764E7F62A99DA3200A0A903 /* NavBar */,
 				2764E7DE2A9960F400A0A903 /* MainView.swift */,
-				2764E8062A9BF70F00A0A903 /* Utilities */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +154,7 @@
 				2764E8182A9F20E500A0A903 /* Orientation.swift */,
 				271A09E62AA1759400C0870D /* Setting.swift */,
 				271A09F12AA2341E00C0870D /* ChatViewModel.swift */,
+				27A9FBED2AA6C65600DB9C31 /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A9FBEE2AA6C65600DB9C31 /* SettingsModel.swift in Sources */,
 				27A9FBE62AA68EA900DB9C31 /* MarkdownRenderer.swift in Sources */,
 				2764E7FE2A9A6A7400A0A903 /* ExamplesView.swift in Sources */,
 				2764E7FC2A9A5CAD00A0A903 /* ExampleCardView.swift in Sources */,

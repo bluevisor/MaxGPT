@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @ObservedObject var settings = SettingsModel.shared
     @Binding var settingsEngaged: Bool
     
     var body: some View {
@@ -21,12 +22,12 @@ struct SettingsView: View {
                             },
                             icon: {
                                 Image(systemName: "envelope")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
                         Spacer()
-                        Text(verbatim: "johndoe@gmail.com")
+                        Text(verbatim: settings.email)
                             .opacity(0.6)
                     }
                     HStack {
@@ -36,12 +37,12 @@ struct SettingsView: View {
                             },
                             icon: {
                                 Image(systemName: "plus.app")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
                         Spacer()
-                        Text("ChatGPT Plus")
+                        Text(settings.subscriptionType)
                             .opacity(0.6)
                     }
                     HStack {
@@ -51,7 +52,7 @@ struct SettingsView: View {
                             },
                             icon: {
                                 Image(systemName: "slider.horizontal.3")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
@@ -68,13 +69,13 @@ struct SettingsView: View {
                             },
                             icon: {
                                 Image(systemName: "ellipsis.bubble")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
                         Spacer()
                         HStack {
-                            Text("Off")
+                            Text(settings.customInstructionsEnabled ? "On" :  "Off")
                                 .opacity(0.6)
                             Image(systemName: "chevron.right")
                                 .imageScale(.small)
@@ -85,61 +86,72 @@ struct SettingsView: View {
                 }
                 Section {
                     
-                        HStack {
-                            Label(
-                                title: {
-                                    Text("Color Scheme")
-                                },
-                                icon: {
-                                    Image(systemName: "moon.fill")
-                                        .foregroundColor(.white)
-                                        .imageScale(.medium)
-                                }
-                            )
-                            Spacer()
-                            Menu {
-                                Text("System")
-                                Text("Dark")
-                                Text("Light")
+                    HStack {
+                        Label(
+                            title: {
+                                Text("Color Scheme")
+                            },
+                            icon: {
+                                Image(systemName: "moon.fill")
+                                    .foregroundColor(.primary)
+                                    .imageScale(.medium)
+                            }
+                        )
+                        Spacer()
+                        Menu {
+                            Button {
+                                settings.colorSchemeOption = nil
                             } label: {
                                 Text("System")
-                                Image(systemName: "chevron.up.chevron.down")
-                                    .imageScale(.small)
-                            }.foregroundColor(.white)
-                            
-                        }
-                        HStack {
-                            Label(
-                                title: {
-                                    Text("New Features")
-                                },
-                                icon: {
-                                    Image(systemName: "testtube.2")
-                                        .foregroundColor(.white)
-                                        .imageScale(.medium)
-                                }
-                            )
-                            Spacer()
-                            Image(systemName: "chevron.right")
+                            }
+                            Button {
+                                settings.colorSchemeOption = .dark
+                            } label: {
+                                Text("Dark")
+                            }
+                            Button {
+                                settings.colorSchemeOption = .light
+                            } label: {
+                                Text("Light")
+                            }
+                        } label: {
+                            Text(settings.colorSchemeOption?.description ?? "System")
+                            Image(systemName: "chevron.up.chevron.down")
                                 .imageScale(.small)
-                                .bold()
-                                .opacity(0.25)
-                        }
-                        HStack {
-                            Label(
-                                title: {
-                                    Text("Haptic Feedback")
-                                },
-                                icon: {
-                                    Image(systemName: "water.waves")
-                                        .foregroundColor(.white)
-                                        .imageScale(.medium)
-                                }
-                            )
-                            Spacer()
-                            Toggle(isOn: .constant(true), label: {
-                            })
-                        }
+                        }.foregroundColor(.primary)
+                        
+                    }
+                    HStack {
+                        Label(
+                            title: {
+                                Text("New Features")
+                            },
+                            icon: {
+                                Image(systemName: "testtube.2")
+                                    .foregroundColor(.primary)
+                                    .imageScale(.medium)
+                            }
+                        )
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .imageScale(.small)
+                            .bold()
+                            .opacity(0.25)
+                    }
+                    HStack {
+                        Label(
+                            title: {
+                                Text("Haptic Feedback")
+                            },
+                            icon: {
+                                Image(systemName: "water.waves")
+                                    .foregroundColor(.primary)
+                                    .imageScale(.medium)
+                            }
+                        )
+                        Spacer()
+                        Toggle(isOn: $settings.hapticFeedbackEnabled) { EmptyView() }
+                    }
                     
                 } header: {
                     Text("App")
@@ -154,12 +166,12 @@ struct SettingsView: View {
                             },
                             icon: {
                                 Image(systemName: "waveform")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
                         Spacer()
-                        Text("Auto-Detect")
+                        Text(settings.mainLanguage)
                         Image(systemName: "chevron.up.chevron.down")
                             .imageScale(.small)
                     }
@@ -174,7 +186,7 @@ struct SettingsView: View {
                             title: { Text("Help Center") },
                             icon: {
                                 Image(systemName: "questionmark.circle.fill")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
@@ -184,7 +196,7 @@ struct SettingsView: View {
                             title: { Text("Terms of Use") },
                             icon: {
                                 Image(systemName: "newspaper")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
@@ -194,7 +206,7 @@ struct SettingsView: View {
                             title: { Text("Privacy Policy") },
                             icon: {
                                 Image(systemName: "lock")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
@@ -204,7 +216,7 @@ struct SettingsView: View {
                             title: { Text("Licenses") },
                             icon: {
                                 Image(systemName: "book.closed.fill")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
@@ -219,7 +231,7 @@ struct SettingsView: View {
                             title: { Text("ChatGPT for iOS") },
                             icon: {
                                 Image(systemName: "circle.fill")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .imageScale(.medium)
                             }
                         )
@@ -237,9 +249,9 @@ struct SettingsView: View {
                             .foregroundColor(.red)
                             .imageScale(.medium)
                     }
-
+                    
                 }
-
+                
             }
             .listStyle(.grouped)
             .background(Color(.gray))
@@ -255,6 +267,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            .preferredColorScheme(SettingsModel.shared.colorSchemeOption)
         }
     }
 }

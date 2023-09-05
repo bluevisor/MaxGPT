@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var chatViewModel = ChatViewModel()
+    @ObservedObject var settings = SettingsModel.shared
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @State var modelDetailsSelected: Bool = false
     @State var selectedModel: GPTModel = GPTModel.gpt3_5
@@ -58,6 +59,7 @@ struct MainView: View {
                 keyboardIsVisible = false
             }
         }
+        .preferredColorScheme(settings.colorSchemeOption)
     }
 }
 
