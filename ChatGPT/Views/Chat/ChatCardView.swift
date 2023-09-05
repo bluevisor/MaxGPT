@@ -12,6 +12,7 @@ import OpenAIKit
 struct ChatCardView: View {
     @EnvironmentObject var viewModel: ChatViewModel
     var message: AIMessage
+    var isNewMessage: Bool
     
     var body: some View {
         HStack {
@@ -42,9 +43,12 @@ struct ChatCardView: View {
                         .foregroundColor(.clear)
                         .frame(width: 20, height: 20)
 //                    Text(MarkdownRenderer(source: message.content).render() ?? AttributedString(message.content))
-                    Text(message.content)
-                        .lineSpacing(0.5)
-                        
+                    if message.role == .assistant && isNewMessage {
+                        Text("\(message.content)\(Image(systemName: "circle.fill"))")
+                    } else {
+                        Text(message.content)
+                            .lineSpacing(0.5)
+                    }
                 }
             }
             Spacer()
@@ -53,6 +57,6 @@ struct ChatCardView: View {
 }
 
 #Preview {
-    ChatCardView(message: AIMessage(role: .assistant, content: "How are you?"))
+    ChatCardView(message: AIMessage(role: .assistant, content: "How are you?"), isNewMessage: true)
         .environmentObject(ChatViewModel())
 }

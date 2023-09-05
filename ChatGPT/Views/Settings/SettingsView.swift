@@ -267,7 +267,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            .preferredColorScheme(SettingsModel.shared.colorSchemeOption)
+            .preferredColorScheme(settings.colorSchemeOption)
         }
     }
 }

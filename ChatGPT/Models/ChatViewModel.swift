@@ -12,6 +12,7 @@ class ChatViewModel: ObservableObject {
     @Published var chatMessages: [AIMessage] = []
     @Published var accumulatingMessage: String = ""
     @Published var isFinished: Bool = true
+    @Published var stopGenerating: Bool = false
     
     lazy var openAI: OpenAIKit = {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else {
@@ -20,14 +21,16 @@ class ChatViewModel: ObservableObject {
         return OpenAIKit(apiToken: apiKey)
     }()
 
-    func startChat(_ message: String) {
+    func sendMessage(_ message: String) {
         
         accumulatingMessage = ""
         isFinished = false
+        stopGenerating = false
         chatMessages.append(AIMessage(role: .user, content: message))
         
         
         openAI.sendStreamChatCompletion(newMessage: AIMessage(role: .assistant, content: message), previousMessages: chatMessages, model: .gptV3_5(.gptTurbo), maxTokens: 2048) { streamResponse in
+            guard !self.stopGenerating else { return }
             switch streamResponse {
             case .success(let streamResult):
                 if let chunk = streamResult.message?.choices.first?.message?.content {
@@ -46,6 +49,18 @@ class ChatViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func cancelCurrentRequest() {
+        stopGenerating = true
+        isFinished = true
+        self.chatMessages.append(AIMessage(role: .assistant, content: self.accumulatingMessage))
+    }
+    
+    func regenerate() {
+        let message: String = chatMessages[chatMessages.count - 2].content
+        chatMessages.removeLast(2)
+        sendMessage(message)
     }
 }
 

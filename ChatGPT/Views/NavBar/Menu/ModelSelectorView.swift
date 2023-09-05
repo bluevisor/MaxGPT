@@ -57,6 +57,9 @@ struct ModelSelectorView: View {
         }
         .frame(height: 55)
         .frame(maxWidth: 450)
+        .onChange(of: selectedModel.name) {
+            modelDetailsEngaged = true
+        }
     }
 }
 

@@ -7,12 +7,23 @@
 
 import SwiftUI
 
-struct SendIconView: View {var body: some View {
+struct InputIconView: View {
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
+    var iconName: String {
+        if !chatViewModel.isFinished {
+            return "stop.fill"
+        } else {
+            return "arrow.up"
+        }
+    }
+    
+    var body: some View {
         Circle()
             .frame(width: 28, height: 28)
             .foregroundColor(Color(.accent))
             .overlay() {
-                Image(systemName: "arrow.up")
+                Image(systemName: iconName)
                     .resizable()
                     .bold()
                     .frame(width: 12, height: 14)
@@ -23,5 +34,6 @@ struct SendIconView: View {var body: some View {
 }
 
 #Preview {
-    SendIconView()
+    InputIconView()
+        .environmentObject(ChatViewModel())
 }

@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270B99CB2AA7E3F000DF4580 /* RegenerateIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270B99CA2AA7E3F000DF4580 /* RegenerateIconView.swift */; };
 		271A09E32AA1741600C0870D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09E22AA1741600C0870D /* SettingsView.swift */; };
 		271A09E72AA1759400C0870D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09E62AA1759400C0870D /* Setting.swift */; };
 		271A09EE2AA209C600C0870D /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 271A09ED2AA209C600C0870D /* OpenAIKit */; };
 		271A09F22AA2341E00C0870D /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09F12AA2341E00C0870D /* ChatViewModel.swift */; };
+		27442FE32AA79F8B00209981 /* DynamicDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27442FE22AA79F8B00209981 /* DynamicDotView.swift */; };
 		2764E7DD2A9960F400A0A903 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7DC2A9960F400A0A903 /* AppEntry.swift */; };
 		2764E7DF2A9960F400A0A903 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7DE2A9960F400A0A903 /* MainView.swift */; };
 		2764E7E12A9960F700A0A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2764E7E02A9960F700A0A903 /* Assets.xcassets */; };
@@ -19,7 +21,7 @@
 		2764E7F02A9985E800A0A903 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7EF2A9985E800A0A903 /* InputView.swift */; };
 		2764E7F32A99A2DF00A0A903 /* GPTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7F22A99A2DF00A0A903 /* GPTModel.swift */; };
 		2764E7F52A99D0DF00A0A903 /* ModelDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7F42A99D0DF00A0A903 /* ModelDetailsView.swift */; };
-		2764E7F92A9A473800A0A903 /* SendIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7F82A9A473800A0A903 /* SendIconView.swift */; };
+		2764E7F92A9A473800A0A903 /* InputIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7F82A9A473800A0A903 /* InputIconView.swift */; };
 		2764E7FC2A9A5CAD00A0A903 /* ExampleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7FB2A9A5CAD00A0A903 /* ExampleCardView.swift */; };
 		2764E7FE2A9A6A7400A0A903 /* ExamplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E7FD2A9A6A7400A0A903 /* ExamplesView.swift */; };
 		2764E8012A9A841900A0A903 /* MenuIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E8002A9A841900A0A903 /* MenuIconView.swift */; };
@@ -39,10 +41,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		270B99CA2AA7E3F000DF4580 /* RegenerateIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegenerateIconView.swift; sourceTree = "<group>"; };
 		271A09E22AA1741600C0870D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		271A09E62AA1759400C0870D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		271A09EB2AA1F74D00C0870D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		271A09F12AA2341E00C0870D /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		27442FE22AA79F8B00209981 /* DynamicDotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicDotView.swift; sourceTree = "<group>"; };
 		275E44192AA57154004247B8 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2764E7D92A9960F400A0A903 /* ChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2764E7DC2A9960F400A0A903 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
@@ -53,7 +57,7 @@
 		2764E7EF2A9985E800A0A903 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2764E7F22A99A2DF00A0A903 /* GPTModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTModel.swift; sourceTree = "<group>"; };
 		2764E7F42A99D0DF00A0A903 /* ModelDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetailsView.swift; sourceTree = "<group>"; };
-		2764E7F82A9A473800A0A903 /* SendIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendIconView.swift; sourceTree = "<group>"; };
+		2764E7F82A9A473800A0A903 /* InputIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputIconView.swift; sourceTree = "<group>"; };
 		2764E7FB2A9A5CAD00A0A903 /* ExampleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCardView.swift; sourceTree = "<group>"; };
 		2764E7FD2A9A6A7400A0A903 /* ExamplesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesView.swift; sourceTree = "<group>"; };
 		2764E8002A9A841900A0A903 /* MenuIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuIconView.swift; sourceTree = "<group>"; };
@@ -174,7 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				2764E7EF2A9985E800A0A903 /* InputView.swift */,
-				2764E7F82A9A473800A0A903 /* SendIconView.swift */,
+				2764E7F82A9A473800A0A903 /* InputIconView.swift */,
+				270B99CA2AA7E3F000DF4580 /* RegenerateIconView.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			children = (
 				2764E8022A9AD09500A0A903 /* ChatView.swift */,
 				27C687452AA2AD62005D0246 /* ChatCardView.swift */,
+				27442FE22AA79F8B00209981 /* DynamicDotView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -304,10 +310,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				27A9FBEE2AA6C65600DB9C31 /* SettingsModel.swift in Sources */,
+				270B99CB2AA7E3F000DF4580 /* RegenerateIconView.swift in Sources */,
 				27A9FBE62AA68EA900DB9C31 /* MarkdownRenderer.swift in Sources */,
 				2764E7FE2A9A6A7400A0A903 /* ExamplesView.swift in Sources */,
+				27442FE32AA79F8B00209981 /* DynamicDotView.swift in Sources */,
 				2764E7FC2A9A5CAD00A0A903 /* ExampleCardView.swift in Sources */,
-				2764E7F92A9A473800A0A903 /* SendIconView.swift in Sources */,
+				2764E7F92A9A473800A0A903 /* InputIconView.swift in Sources */,
 				2764E7DF2A9960F400A0A903 /* MainView.swift in Sources */,
 				271A09F22AA2341E00C0870D /* ChatViewModel.swift in Sources */,
 				2764E80C2A9C19B600A0A903 /* PromptExample.swift in Sources */,

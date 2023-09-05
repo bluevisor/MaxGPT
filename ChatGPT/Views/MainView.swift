@@ -25,7 +25,7 @@ struct MainView: View {
                         .foregroundColor(.clear)
                         .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                 }
-                ChatView()
+                ChatView(keyboardIsVisible: $keyboardIsVisible)
                     .environmentObject(chatViewModel)
                     .onTapGesture {
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

@@ -9,8 +9,9 @@ import SwiftUI
 import OpenAIKit
 
 struct InputView: View {
-    @EnvironmentObject var viewModel: ChatViewModel
+    @EnvironmentObject var chatViewModel: ChatViewModel
     @State var prompt: String = ""
+    @State var isRecording: Bool = false
     
     var body: some View {
         HStack(alignment: .bottom) {
@@ -29,30 +30,48 @@ struct InputView: View {
                 if prompt.isEmpty {
                     HStack {
                         Spacer()
-                        Button(action: {}) {
+                        Button {
+                            isRecording.toggle()
+                        } label: {
                             Image(systemName: "waveform")
                                 .resizable()
                                 .frame(width: 19, height: 19)
                                 .foregroundColor(.gray)
+                            
                         }
+                        .symbolEffect(.variableColor.iterative.dimInactiveLayers.nonReversing, isActive: isRecording)
                         .padding(.trailing, 12)
                         .opacity(0.8)
                     }
                 }
             }
-            Spacer()
-            Button(action: {
-                viewModel.startChat(prompt)
-                            prompt = ""
-            }) {
-                
-                // TODO: Fix button transparency issue
-                SendIconView()
-                    .disabled(prompt.isEmpty)
-                    .opacity(prompt.isEmpty ? 0.5 : 1)
+            Group {
+                if chatViewModel.stopGenerating {
+                    Button {
+                        chatViewModel.regenerate()
+                        prompt = ""
+                    } label: {
+                        RegenerateIconView()
+                            .padding(.bottom, 4)
+                    }
+                }
+                Button {
+                    if !chatViewModel.isFinished {
+                        chatViewModel.cancelCurrentRequest()
+                    } else {
+                        chatViewModel.sendMessage(prompt)
+                        prompt = ""
+                    }
+                    
+                } label: {
+                    InputIconView()
+                        .environmentObject(chatViewModel)
+                        .opacity(prompt.isEmpty && chatViewModel.isFinished ? 0.4 : 1)
+                        .padding(.bottom, 4)
+                }
+                .disabled(prompt.isEmpty && chatViewModel.isFinished)
             }
-            .disabled(prompt.isEmpty)
-            .padding(.bottom, 4)
+            .animation(.bouncy, value: chatViewModel.stopGenerating)
         }
     }
 }
