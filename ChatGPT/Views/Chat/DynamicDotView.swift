@@ -13,6 +13,7 @@ struct DynamicDotView: View {
     @State private var circleColor: Color = .teal
     @State private var typeWriterEffectIsActive: Bool = false
     @State private var displayedText: String = ""
+    
     @Binding var keyboardIsVisible: Bool
     
     private let targetText = "ChatGPT"
@@ -66,8 +67,10 @@ struct DynamicDotView: View {
                 }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                typeWriterEffect()
+            if !keyboardIsVisible {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    typeWriterEffect()
+                }
             }
         }
         .onChange(of: keyboardIsVisible) {
@@ -77,7 +80,7 @@ struct DynamicDotView: View {
         }
     }
 }
-    
+
 #Preview {
     DynamicDotView(keyboardIsVisible: .constant(false))
         .environmentObject(ChatViewModel())

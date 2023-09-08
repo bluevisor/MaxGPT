@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ModelButtonView: View {
     @Binding var modelDetailsEngaged: Bool
+    @Binding var animateIcon: Bool
     var model: GPTModel
     var isSelected: Bool
     
@@ -24,6 +25,7 @@ struct ModelButtonView: View {
                     .frame(width: 13, height: 15)
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(isSelected ? model.iconColor : .gray)
+                    .symbolEffect(.bounce.up.byLayer, value: animateIcon)
                 Text(model.name)
                     .font(.footnote)
                     .fontWeight(.semibold)
@@ -43,5 +45,5 @@ struct ModelButtonView: View {
 }
 
 #Preview {
-    ModelButtonView(modelDetailsEngaged: .constant(false), model: GPTModel.gpt3_5, isSelected: true)
+    ModelButtonView(modelDetailsEngaged: .constant(false), animateIcon: .constant(false), model: GPTModel.gpt3_5, isSelected: true)
 }

@@ -10,8 +10,8 @@ import OpenAIKit
 
 struct InputView: View {
     @EnvironmentObject var chatViewModel: ChatViewModel
-    @State var prompt: String = ""
-    @State var isRecording: Bool = false
+    @State private var prompt: String = ""
+    @State private var isRecording: Bool = false
     
     var body: some View {
         HStack(alignment: .bottom) {
@@ -37,7 +37,6 @@ struct InputView: View {
                                 .resizable()
                                 .frame(width: 19, height: 19)
                                 .foregroundColor(.gray)
-                            
                         }
                         .symbolEffect(.variableColor.iterative.dimInactiveLayers.nonReversing, isActive: isRecording)
                         .padding(.trailing, 12)
@@ -45,33 +44,24 @@ struct InputView: View {
                     }
                 }
             }
-            Group {
-                if chatViewModel.stopGenerating {
-                    Button {
-                        chatViewModel.regenerate()
-                        prompt = ""
-                    } label: {
-                        RegenerateIconView()
-                            .padding(.bottom, 4)
-                    }
+            Button {
+                if !chatViewModel.isFinished {
+                    chatViewModel.cancelCurrentRequest()
+                } else if chatViewModel.isInterrupted {
+                    chatViewModel.continueGeneration()
+                } else {
+                    chatViewModel.sendMessage(prompt)
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    prompt = ""
                 }
-                Button {
-                    if !chatViewModel.isFinished {
-                        chatViewModel.cancelCurrentRequest()
-                    } else {
-                        chatViewModel.sendMessage(prompt)
-                        prompt = ""
-                    }
-                    
-                } label: {
-                    InputIconView()
-                        .environmentObject(chatViewModel)
-                        .opacity(prompt.isEmpty && chatViewModel.isFinished ? 0.4 : 1)
-                        .padding(.bottom, 4)
-                }
-                .disabled(prompt.isEmpty && chatViewModel.isFinished)
+                
+            } label: {
+                InputIconView()
+                    .environmentObject(chatViewModel)
+                    .opacity(prompt.isEmpty && chatViewModel.isFinished && !chatViewModel.isInterrupted ? 0.5 : 1)
+                    .padding(.bottom, 4)
             }
-            .animation(.bouncy, value: chatViewModel.stopGenerating)
+            .disabled(prompt.isEmpty && chatViewModel.isFinished && !chatViewModel.isInterrupted)
         }
     }
 }

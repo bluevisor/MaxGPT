@@ -10,11 +10,13 @@ import SwiftUI
 struct InputIconView: View {
     @EnvironmentObject var chatViewModel: ChatViewModel
     
-    var iconName: String {
+    var icon: (iconName: String, iconWidth: CGFloat, iconHeight: CGFloat) {
         if !chatViewModel.isFinished {
-            return "stop.fill"
+            return ("stop.fill", 10, 10)
+        } else if chatViewModel.isInterrupted {
+            return ("forward.fill", 14, 12)
         } else {
-            return "arrow.up"
+            return ("arrow.up", 12, 14)
         }
     }
     
@@ -23,10 +25,13 @@ struct InputIconView: View {
             .frame(width: 28, height: 28)
             .foregroundColor(Color(.accent))
             .overlay() {
-                Image(systemName: iconName)
+                Image(systemName: icon.iconName)
                     .resizable()
                     .bold()
-                    .frame(width: 12, height: 14)
+                    .frame(
+                        width: icon.iconWidth,
+                        height: icon.iconHeight
+                    )
                     .padding(7)
                     .foregroundColor(Color(UIColor.systemBackground))
             }

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var chatViewModel = ChatViewModel()
-    @ObservedObject var settings = SettingsModel.shared
+    @StateObject var settings = SettingsModel.shared
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @State var modelDetailsSelected: Bool = false
-    @State var selectedModel: GPTModel = GPTModel.gpt3_5
-    @State var keyboardIsVisible: Bool = false
+    @State private var modelDetailsSelected: Bool = false
+    @State private var selectedModel: GPTModel = GPTModel.gpt3_5
+    @State private var keyboardIsVisible: Bool = false
     
     
     var body: some View {

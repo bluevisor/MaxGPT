@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270B99CB2AA7E3F000DF4580 /* RegenerateIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270B99CA2AA7E3F000DF4580 /* RegenerateIconView.swift */; };
 		271A09E32AA1741600C0870D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09E22AA1741600C0870D /* SettingsView.swift */; };
 		271A09E72AA1759400C0870D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A09E62AA1759400C0870D /* Setting.swift */; };
 		271A09EE2AA209C600C0870D /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 271A09ED2AA209C600C0870D /* OpenAIKit */; };
@@ -33,15 +32,11 @@
 		2764E8152A9D51A400A0A903 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E8142A9D51A400A0A903 /* MenuItem.swift */; };
 		2764E8172A9D521E00A0A903 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E8162A9D521E00A0A903 /* MenuItemView.swift */; };
 		2764E8192A9F20E500A0A903 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764E8182A9F20E500A0A903 /* Orientation.swift */; };
-		27A9FBE62AA68EA900DB9C31 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A9FBE52AA68EA900DB9C31 /* MarkdownRenderer.swift */; };
-		27A9FBE92AA68F4800DB9C31 /* Markdownosaur in Frameworks */ = {isa = PBXBuildFile; productRef = 27A9FBE82AA68F4800DB9C31 /* Markdownosaur */; };
-		27A9FBEC2AA6905100DB9C31 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 27A9FBEB2AA6905100DB9C31 /* Kingfisher */; };
 		27A9FBEE2AA6C65600DB9C31 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A9FBED2AA6C65600DB9C31 /* SettingsModel.swift */; };
 		27C687462AA2AD62005D0246 /* ChatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C687452AA2AD62005D0246 /* ChatCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		270B99CA2AA7E3F000DF4580 /* RegenerateIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegenerateIconView.swift; sourceTree = "<group>"; };
 		271A09E22AA1741600C0870D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		271A09E62AA1759400C0870D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		271A09EB2AA1F74D00C0870D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -69,7 +64,6 @@
 		2764E8142A9D51A400A0A903 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		2764E8162A9D521E00A0A903 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		2764E8182A9F20E500A0A903 /* Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
-		27A9FBE52AA68EA900DB9C31 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
 		27A9FBED2AA6C65600DB9C31 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		27C687452AA2AD62005D0246 /* ChatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,8 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27A9FBEC2AA6905100DB9C31 /* Kingfisher in Frameworks */,
-				27A9FBE92AA68F4800DB9C31 /* Markdownosaur in Frameworks */,
 				271A09EE2AA209C600C0870D /* OpenAIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,8 +112,8 @@
 				271A09EB2AA1F74D00C0870D /* Info.plist */,
 				2764E7F12A99A2BE00A0A903 /* Models */,
 				2764E7EA2A99798500A0A903 /* Views */,
-				2764E8062A9BF70F00A0A903 /* Utilities */,
 				27BA41922AA5A2B500419937 /* Themes */,
+				27A583CA2AAA60C400177D94 /* Utilities */,
 				2764E7E02A9960F700A0A903 /* Assets.xcassets */,
 				2764E7E22A9960F700A0A903 /* Preview Content */,
 			);
@@ -139,12 +131,12 @@
 		2764E7EA2A99798500A0A903 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2764E7DE2A9960F400A0A903 /* MainView.swift */,
 				2772AE402AA2ACC200CA845F /* Chat */,
 				271A09E12AA173E400C0870D /* Settings */,
 				2764E7FF2A9A7DDA00A0A903 /* Examples */,
 				2764E7F72A9A46FC00A0A903 /* Input */,
 				2764E7F62A99DA3200A0A903 /* NavBar */,
-				2764E7DE2A9960F400A0A903 /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,7 +171,6 @@
 			children = (
 				2764E7EF2A9985E800A0A903 /* InputView.swift */,
 				2764E7F82A9A473800A0A903 /* InputIconView.swift */,
-				270B99CA2AA7E3F000DF4580 /* RegenerateIconView.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -191,14 +182,6 @@
 				2764E7FD2A9A6A7400A0A903 /* ExamplesView.swift */,
 			);
 			path = Examples;
-			sourceTree = "<group>";
-		};
-		2764E8062A9BF70F00A0A903 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				27A9FBE52AA68EA900DB9C31 /* MarkdownRenderer.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		2764E8102A9D514600A0A903 /* Menu */ = {
@@ -220,6 +203,13 @@
 				27442FE22AA79F8B00209981 /* DynamicDotView.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		27A583CA2AAA60C400177D94 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		27BA41922AA5A2B500419937 /* Themes */ = {
@@ -247,8 +237,6 @@
 			name = ChatGPT;
 			packageProductDependencies = (
 				271A09ED2AA209C600C0870D /* OpenAIKit */,
-				27A9FBE82AA68F4800DB9C31 /* Markdownosaur */,
-				27A9FBEB2AA6905100DB9C31 /* Kingfisher */,
 			);
 			productName = ChatGPT;
 			productReference = 2764E7D92A9960F400A0A903 /* ChatGPT.app */;
@@ -280,8 +268,6 @@
 			mainGroup = 2764E7D02A9960F400A0A903;
 			packageReferences = (
 				271A09EC2AA209C600C0870D /* XCRemoteSwiftPackageReference "OpenAI" */,
-				27A9FBE72AA68F4800DB9C31 /* XCRemoteSwiftPackageReference "Markdownosaur" */,
-				27A9FBEA2AA6905100DB9C31 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 2764E7DA2A9960F400A0A903 /* Products */;
 			projectDirPath = "";
@@ -310,8 +296,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27A9FBEE2AA6C65600DB9C31 /* SettingsModel.swift in Sources */,
-				270B99CB2AA7E3F000DF4580 /* RegenerateIconView.swift in Sources */,
-				27A9FBE62AA68EA900DB9C31 /* MarkdownRenderer.swift in Sources */,
 				2764E7FE2A9A6A7400A0A903 /* ExamplesView.swift in Sources */,
 				27442FE32AA79F8B00209981 /* DynamicDotView.swift in Sources */,
 				2764E7FC2A9A5CAD00A0A903 /* ExampleCardView.swift in Sources */,
@@ -550,24 +534,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FuturraGroup/OpenAI.git";
 			requirement = {
-				kind = upToNextMajorVersion;
+				kind = upToNextMinorVersion;
 				minimumVersion = 1.5.0;
-			};
-		};
-		27A9FBE72AA68F4800DB9C31 /* XCRemoteSwiftPackageReference "Markdownosaur" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/christianselig/Markdownosaur.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		27A9FBEA2AA6905100DB9C31 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -577,16 +545,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 271A09EC2AA209C600C0870D /* XCRemoteSwiftPackageReference "OpenAI" */;
 			productName = OpenAIKit;
-		};
-		27A9FBE82AA68F4800DB9C31 /* Markdownosaur */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 27A9FBE72AA68F4800DB9C31 /* XCRemoteSwiftPackageReference "Markdownosaur" */;
-			productName = Markdownosaur;
-		};
-		27A9FBEB2AA6905100DB9C31 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 27A9FBEA2AA6905100DB9C31 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

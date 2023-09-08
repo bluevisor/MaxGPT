@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var settings = SettingsModel.shared
+    @StateObject var settings = SettingsModel.shared
     @Binding var settingsEngaged: Bool
     
     var body: some View {

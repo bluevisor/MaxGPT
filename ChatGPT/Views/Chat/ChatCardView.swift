@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-import UIKit
 import OpenAIKit
 
 struct ChatCardView: View {
     @EnvironmentObject var viewModel: ChatViewModel
     var message: AIMessage
     var isNewMessage: Bool
+    var animation: Namespace.ID
     
     var body: some View {
         HStack {
@@ -42,21 +42,26 @@ struct ChatCardView: View {
                     Rectangle()
                         .foregroundColor(.clear)
                         .frame(width: 20, height: 20)
-//                    Text(MarkdownRenderer(source: message.content).render() ?? AttributedString(message.content))
                     if message.role == .assistant && isNewMessage {
                         Text("\(message.content)\(Image(systemName: "circle.fill"))")
+                            .matchedGeometryEffect(id: "dot", in: animation)
                     } else {
                         Text(message.content)
                             .lineSpacing(0.5)
                     }
                 }
+                .animation(.easeInOut, value: viewModel.chatMessages.isEmpty)
             }
             Spacer()
         }
     }
 }
 
-#Preview {
-    ChatCardView(message: AIMessage(role: .assistant, content: "How are you?"), isNewMessage: true)
-        .environmentObject(ChatViewModel())
+struct SubView_Previews: PreviewProvider {
+    @Namespace static var previewNamespace
+    
+    static var previews: some View {
+        ChatCardView(message: AIMessage(role: .assistant, content: ""), isNewMessage: true, animation: previewNamespace)
+            .environmentObject(ChatViewModel())
+    }
 }

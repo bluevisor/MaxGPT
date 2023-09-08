@@ -12,7 +12,7 @@ class ChatViewModel: ObservableObject {
     @Published var chatMessages: [AIMessage] = []
     @Published var accumulatingMessage: String = ""
     @Published var isFinished: Bool = true
-    @Published var stopGenerating: Bool = false
+    @Published var isInterrupted: Bool = false
     
     lazy var openAI: OpenAIKit = {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else {
@@ -20,17 +20,20 @@ class ChatViewModel: ObservableObject {
         }
         return OpenAIKit(apiToken: apiKey)
     }()
-
+    
     func sendMessage(_ message: String) {
         
         accumulatingMessage = ""
         isFinished = false
-        stopGenerating = false
-        chatMessages.append(AIMessage(role: .user, content: message))
         
+        if !isInterrupted {
+            chatMessages.append(AIMessage(role: .user, content: message))
+        } else {
+            isInterrupted = false
+        }
         
         openAI.sendStreamChatCompletion(newMessage: AIMessage(role: .assistant, content: message), previousMessages: chatMessages, model: .gptV3_5(.gptTurbo), maxTokens: 2048) { streamResponse in
-            guard !self.stopGenerating else { return }
+            guard !self.isInterrupted else { return }
             switch streamResponse {
             case .success(let streamResult):
                 if let chunk = streamResult.message?.choices.first?.message?.content {
@@ -40,11 +43,11 @@ class ChatViewModel: ObservableObject {
                     }
                 }
                 if streamResult.isFinished  {
-                DispatchQueue.main.async {
-                    self.isFinished = true
-                    self.chatMessages.append(AIMessage(role: .assistant, content: self.accumulatingMessage))
+                    DispatchQueue.main.async {
+                        self.isFinished = true
+                        self.chatMessages.append(AIMessage(role: .assistant, content: self.accumulatingMessage))
+                    }
                 }
-            }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -52,15 +55,14 @@ class ChatViewModel: ObservableObject {
     }
     
     func cancelCurrentRequest() {
-        stopGenerating = true
+        isInterrupted = true
         isFinished = true
         self.chatMessages.append(AIMessage(role: .assistant, content: self.accumulatingMessage))
     }
     
-    func regenerate() {
-        let message: String = chatMessages[chatMessages.count - 2].content
-        chatMessages.removeLast(2)
-        sendMessage(message)
+    func continueGeneration() {
+        guard self.chatMessages.last?.role == .assistant else { return }
+        sendMessage("")
     }
 }
 
